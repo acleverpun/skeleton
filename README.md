@@ -42,15 +42,66 @@ In order to start playing with your new toys, you first need to install the batt
 ```sh
 # download the skeleton
 # (you could alternatively download/extract the archive from github.com, but that's lame)
-$ git clone --depth=1 git://github.com/acleverpun/skeleton.git <gameName>
+$ git clone --depth=1 git://github.com/acleverpun/skeleton.git <gamePath>
 
-$ cd <gameName>
+$ cd <gamePath>
 
-# remove the git metadata
-$ rm -rf .git
+# remove the git metadata and references to the skeleton
+$ rm -rf .git README.md
 
 # we have this run `bower install` as well, or else that too would be necessary
 $ npm install
+```
+
+You'll also want to set your project name, description, and whatever else in `package.json`, `bower.json`, and `public/index.html`.
+
+
+## Development
+
+The `.js` files in `app/` get transpiled and concatenated into a file named `main.js`.
+Everything in `public/` gets served directly.
+
+One very important thing to keep in mind is that since you can write ES6 code, you can (and should) take advantage of ES6 modules.
+Consider the following (albeit contrived) example:
+
+```javascript
+// app/entities/enemy.js
+
+class Enemy {
+	constructor(name) {
+		this.name = name;
+	}
+
+	// blah blah blah
+}
+
+export default Player;
+```
+
+```javascript
+// app/entities/boss.js
+
+import Enemy from './entities/enemy';
+
+class Boss extends Enemy {
+	constructor(name) {
+		super(name);
+
+		this.type = 'boss';
+	}
+
+	// blah blah blah
+}
+
+export default Boss;
+```
+
+```javascript
+// app/main.js
+
+import Boss from './entities/boss';
+
+var boss = new Boss('Larry');
 ```
 
 
