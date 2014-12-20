@@ -24,14 +24,12 @@ Some ES6 features particularly useful for game development:
 - [Node.js](http://nodejs.org/)
 - [bower](http://bower.io/)
 - [broccoli](https://github.com/broccolijs/broccoli)
-- [6to5ify](https://github.com/6to5/6to5ify)
 
 Assuming Node.js is installed, the others may be installed via `npm`.
 
 ```sh
 $ npm install -g bower
 $ npm install -g broccoli-cli
-$ npm install -g 6to5ify
 ```
 
 
