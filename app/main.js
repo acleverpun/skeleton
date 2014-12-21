@@ -1,16 +1,17 @@
 import config from './config';
-import preload from './game-preload';
-import create from './game-create';
-import update from './game-update';
-import render from './game-render';
+import Boot from './states/boot';
+import Load from './states/load';
+import MainMenu from './states/main-menu';
+import Game from './states/game';
 
 
-var game = new Phaser.Game(config.width, config.height, config.renderer, config.name, {
-	preload: preload,
-	create: create,
-	update: update,
-	render: render
-});
+var game = new Phaser.Game(config.width, config.height, config.renderer, config.name);
 
+game.state.add('Boot', Boot);
+game.state.add('Load', Load);
+game.state.add('MainMenu', MainMenu);
+game.state.add('Game', Game);
+
+game.state.start('Boot');
 
 export default game;
